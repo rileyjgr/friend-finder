@@ -1,0 +1,17 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "friend finder",
+  "main": "server.js",
+  "scripts": {
+    "test": "banana",
+    "start": "node server.js"
+  },
+  "author": "Riley Griffin",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "path": "^0.12.7"
+  }
+}
