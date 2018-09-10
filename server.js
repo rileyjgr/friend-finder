@@ -1,24 +1,21 @@
+// node-modules
 const express    = require('express');
+
 const morgan     = require('morgan');
-const bodyParser = require('body-parser');
-const path = require('path');
+
+//start the app
 const app  = express();
-
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/app/public/home.html'));
-});
+app.use(morgan('dev'));
 
 
-app.get('/survey', function(req, res){
-    res.sendFile(path.join(__dirname + '/app/public/survey.html'));
-});
+// my js files
+const htmlRoute = require('./app/routing/htmlRoute.js');
+htmlRoute(app);
 
+const apiRoute = require('./app/routing/apiRoute.js');
+apiRoute(app);
 
-//not really sure if i need this on this js file
-// app.use(morgan('dev'));
-// app.use(bodyParser.json());
-
-const port = process.env.PORT || 27017;
+const port = process.env.PORT || 3000;
 
 app.listen(port);
 console.log('Server listening at: ' + port);
