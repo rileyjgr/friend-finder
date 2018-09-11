@@ -1,19 +1,17 @@
-// const survey = require('../public/survey.html');
-const request = require('request');
+const bodyParser = require('body-parser');
+const dataArray = [];
 
-const friends = (app) => {
-    app.use(request), options = {
-        uri: 'https://find-friends-or-not.herokuapp.com',
-        json: true,
-        method: 'POST',
-        href: '',
-        pathname: '/api/friends'
-    };
+const throwJson = (app) => {
+    //confirm app is what we want to push
 
-    request(options, function(err, res, body){
-        console.log(err, res, body);
+    dataArray.push(app);
+
+    app.get('/api/friends', function(req, res){
+        res.send(dataArray);
     });
+
 
 };
 
-module.exports = friends;
+module.exports = throwJson;
+

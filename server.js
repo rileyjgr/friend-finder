@@ -16,9 +16,6 @@ const htmlRoute = require('./app/routing/htmlRoute.js');
 const apiRoute = require('./app/routing/apiRoute.js');
     apiRoute(app);
 
-const friendsApi = require('./app/data/friends.js');
-    friendsApi(app);
-
 const port = process.env.PORT || 3000;
 
 app.listen(port);
