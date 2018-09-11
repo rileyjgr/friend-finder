@@ -1,31 +1,24 @@
 const bodyParser = require('body-parser');
 
-const dataArray = [{}];
+const dataArray = [];
 
 const throwJson = (app) => {
-    //confirm app is what we want to push
 
+    // sets the url
     app.get('/api/friends', function(req, res){
         res.send(dataArray);
     });
 
-    const jsonParse = bodyParser.json();
+    // parses the data into a json object
     const urlencodedParser = bodyParser.urlencoded({ extended: true });
 
+    // sends the data to dataArray
     app.post('/api/friends', urlencodedParser, function (req, res) {
         if(!req.body) return res.sendStatus(400);
         res.send(req.body);
         console.log('sent');
         dataArray.push(req.body);
     });
-
-    app.post('/api/friends', jsonParse, function(req,res){
-        if(!req.body) return res.sendStatus(400);
-        res.send(req.body);
-        console.log('sent');
-        dataArray.push(req.body);
-    });
-
 
 };
 

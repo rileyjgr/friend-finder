@@ -9,10 +9,11 @@ const app  = express();
 app.use(morgan('dev'));
 
 
-// my js files
+// Router for html files
 const htmlRoute = require('./app/routing/htmlRoute.js');
     htmlRoute(app);
 
+// Router for api
 const apiRoute = require('./app/routing/apiRoute.js');
     apiRoute(app);
 
