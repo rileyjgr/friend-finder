@@ -3,7 +3,7 @@ const request = require('request');
 
 const friends = (app) => {
     app.use(request), options = {
-        uri: 'localhost:3000',
+        uri: 'https://find-friends-or-not.herokuapp.com',
         json: true,
         method: 'POST',
         href: '',
