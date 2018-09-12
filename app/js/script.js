@@ -7,7 +7,10 @@
 const submitButton = document.getElementById('submit');
 
 submitButton.onclick = () => {
-
+    const formName = document.getElementById('name');
+    const formPic  = document.getElementById('photo');
+    const both     = formName + formPic;
+    const questions = document.getElementById('chosen-select');
     const Data = {
         name: document.getElementById('name').value,
         photo: document.getElementById('photo').value,
@@ -25,45 +28,85 @@ submitButton.onclick = () => {
         ]
     };
 
+    const validate = () => {
+        let isValid = true;
 
-    const keyWords = Data.scores;
 
-    const Url ='/api/friends';
+            //encase it breaks again here you go future riley setTimeout(function(){}, 3000);
 
-    axios.post(Url, Data, {
-    })
-        .then(function(response){
-            console.log(response);
+            // if formName is empty.. alert user they need to fill it in
+            // this would look wayyyyyyyyyyyyyy nicer in a switch statement. Do this tomorrow.
+            if (formName.value === "") {
+                $("#match-name").text('You are missing your name');
+                $("#match-img").attr("src", '');
+                $("#results-modal").modal("toggle");
+                isValid = false;
+            }
 
+            // if formPic is empty.. alert user they need to fill it in
+            if (formPic.value === "") {
+                $("#match-name").text('You are missing your picture');
+                $("#match-img").attr("src", '');
+                $("#results-modal").modal("toggle");
+                isValid = false;
+            }
+            // this doesnt work 
+            // if (both.value === "") {
+            //     $("#match-name").text('You are missing your name and picture');
+            //     $("#match-img").attr("src", '');
+            //     $("#results-modal").modal("toggle");
+            //     isValid = false;
+            // }
+
+            // need to fix this.
+            if (questions.value === "") {
+                $("#match-name").text('You are missing your picture');
+                $("#match-img").attr("src", '');
+                $("#results-modal").modal("toggle");
+                isValid = false;
+            }
+
+        return isValid;
+    };
+
+    if (validate()) {
+        const Url = '/api/friends';
+
+
+        axios.post(Url, Data, {})
+            .then(function (response) {
+                console.log(response);
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        axios.get(Url, {
+            data: {
+                name: name,
+                photo: photo
+            }
         })
-        .catch(function (error) {
-           console.log(error);
-        });
+            .then(function (response) {
 
-    axios.get(Url, {
-        data: {
-            name: name,
-            photo: photo
-        }
-    })
-        .then(function(response){
+                // have to do something with this to find a match
 
-            // have to do something with this to find a match
+                // const match = response.data[];
 
-            const match = response.data[];
+                console.log(response.data[0]);
 
-            console.log(response.data[0]);
+                // 0s are how i enter the json file
+                $("#match-name").text(response.data[0].name);
+                $("#match-img").attr("src", response.data[0].photo);
 
-            // 0s are how i enter the json file, 0s will end up being match
-            $("#match-name").text(response.data[0].name);
-            $("#match-img").attr("src", response.data[0].photo);
-
-            // Show the modal with the best match
-            $("#results-modal").modal("toggle");
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+                // Show the modal with the best match
+                $("#results-modal").modal("toggle");
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 };
 
 
