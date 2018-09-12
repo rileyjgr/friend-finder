@@ -1,5 +1,10 @@
 'use strict';
 
+// add html page that has a button that asks the server if it can brew coffee
+// but declines because its a teapot '418'
+
+// import * as axios from "request";
+
 const personArray = [{}];
 const answersArray = [{}];
 
@@ -37,14 +42,27 @@ const getAnswers = () => {
 
 };
 
-submitButton.addEventListener('click', function(){
+submitButton.onclick = () => {
+
+    // call the functions
     getNaPic();
     getAnswers();
-    const data = [personArray, answersArray];
 
-    console.log(data);
+    const Data = JSON.stringify([personArray, answersArray]);
+
+    console.log(Data);
 
 
-});
+    const Url ='/api/friends';
+
+    axios.post(Url, Data, {
+    })
+        .then(function(response){
+            console.log(response);
+        })
+        .catch(function (error) {
+           console.log(error);
+        });
+};
 
 
