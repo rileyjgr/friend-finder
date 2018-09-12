@@ -39,16 +39,24 @@ submitButton.onclick = () => {
         .catch(function (error) {
            console.log(error);
         });
+
     axios.get(Url, {
-        keyWords
+        data: {
+            name: name,
+            photo: photo
+        }
     })
         .then(function(response){
 
-            const data = response.data;
-            console.log(data);
-            // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-            $("#match-name").text(data.name);
-            $("#match-img").attr("src", data.photo);
+            // have to do something with this to find a match
+
+            const match = response.data[];
+
+            console.log(response.data[0]);
+
+            // 0s are how i enter the json file, 0s will end up being match
+            $("#match-name").text(response.data[0].name);
+            $("#match-img").attr("src", response.data[0].photo);
 
             // Show the modal with the best match
             $("#results-modal").modal("toggle");
