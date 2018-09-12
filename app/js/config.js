@@ -1,4 +1,6 @@
-const config = {
+// not really sure what this code is doing besides changing the way stuff looks...?
+
+var config = {
     ".chosen-select": {},
     ".chosen-select-deselect": {
         allow_single_deselect: true
@@ -13,6 +15,7 @@ const config = {
         width: "95%"
     }
 };
+
 // this needs to be changed
 for (var selector in config) {
     $(selector).chosen(config[selector]);
