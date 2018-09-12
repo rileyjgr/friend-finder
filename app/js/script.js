@@ -95,11 +95,16 @@ submitButton.onclick = () => {
                 //go through your array of responses and filter results that have a score within the same range as the user
                 // const match = response.data[];
 
+                // I have no idea what I set this equal to
+                const match = '';
+                
+                // this will always return the same user. I need to iterate through the json file and find someone similar.
+                // or is this better done on the express server.
                 console.log(response.data[0]);
 
                 // 0s are how i enter the json file
-                $("#match-name").text(response.data[0].name);
-                $("#match-img").attr("src", response.data[0].photo);
+                $("#match-name").text(response.data[match].name);
+                $("#match-img").attr("src", response.data[match].photo);
 
                 // Show the modal with the best match
                 $("#results-modal").modal("toggle");
