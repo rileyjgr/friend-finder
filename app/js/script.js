@@ -97,14 +97,14 @@ submitButton.onclick = () => {
 
                 // I have no idea what I set this equal to
                 const match = '';
-                
+
                 // this will always return the same user. I need to iterate through the json file and find someone similar.
                 // or is this better done on the express server.
-                console.log(response.data[0]);
+                console.log(response.data[match]);
 
-                // 0s are how i enter the json file
-                $("#match-name").text(response.data[match].name);
-                $("#match-img").attr("src", response.data[match].photo);
+                // this will be undefined so they wont return anything
+                $("#match-name").text(response.data.name);
+                $("#match-img").attr("src", response.data.photo);
 
                 // Show the modal with the best match
                 $("#results-modal").modal("toggle");

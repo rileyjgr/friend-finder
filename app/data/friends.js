@@ -1,7 +1,6 @@
 const bodyParser = require('body-parser');
 
 const dataArray = [];
-
 const throwJson = (app) => {
 
     // sets the url
