@@ -11,9 +11,10 @@ const throwJson = (app) => {
 
     // parses the data into a json object
     const urlencodedParser = bodyParser.urlencoded({ extended: true });
+    const parseJson = bodyParser.json();
 
     // sends the data to dataArray
-    app.post('/api/friends', urlencodedParser, function (req, res) {
+    app.post('/api/friends', urlencodedParser, parseJson, function (req, res) {
         if(!req.body) return res.sendStatus(400);
         res.send(req.body);
         console.log('sent');
