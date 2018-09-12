@@ -32,41 +32,42 @@ submitButton.onclick = () => {
         let isValid = true;
 
 
-            //encase it breaks again here you go future riley setTimeout(function(){}, 3000);
+    //encase it breaks again here you go future riley setTimeout(function(){}, 3000);
+    // if formName is empty.. alert user they need to fill it in
+        // this would look wayyyyyyyyyyyyyy nicer in a switch statement. Do this tomorrow.
+        if (formName.value === "") {
+            $("#match-name").text('You are missing your name');
+            $("#match-img").attr("src", '');
+            $("#results-modal").modal("toggle");
+            isValid = false;
+        }
 
-            // if formName is empty.. alert user they need to fill it in
-            // this would look wayyyyyyyyyyyyyy nicer in a switch statement. Do this tomorrow.
-            if (formName.value === "") {
-                $("#match-name").text('You are missing your name');
-                $("#match-img").attr("src", '');
-                $("#results-modal").modal("toggle");
-                isValid = false;
-            }
+        // if formPic is empty.. alert user they need to fill it in
+        if (formPic.value === "") {
+            $("#match-name").text('You are missing your picture');
+            $("#match-img").attr("src", '');
+            $("#results-modal").modal("toggle");
+            isValid = false;
+        }
 
-            // if formPic is empty.. alert user they need to fill it in
-            if (formPic.value === "") {
-                $("#match-name").text('You are missing your picture');
-                $("#match-img").attr("src", '');
-                $("#results-modal").modal("toggle");
-                isValid = false;
-            }
-            // this doesnt work 
-            // if (both.value === "") {
-            //     $("#match-name").text('You are missing your name and picture');
-            //     $("#match-img").attr("src", '');
-            //     $("#results-modal").modal("toggle");
-            //     isValid = false;
-            // }
+        // this doesnt work
+        // if (both.value === "") {
+        //     $("#match-name").text('You are missing your name and picture');
+        //     $("#match-img").attr("src", '');
+        //     $("#results-modal").modal("toggle");
+        //     isValid = false;
+        // }
 
-            // need to fix this.
-            if (questions.value === "") {
-                $("#match-name").text('You are missing your picture');
-                $("#match-img").attr("src", '');
-                $("#results-modal").modal("toggle");
-                isValid = false;
-            }
+        // this doesnt work either
+        // // need to fix this.
+        // if (questions.value === "") {
+        //     $("#match-name").text('You are missing your picture');
+        //     $("#match-img").attr("src", '');
+        //     $("#results-modal").modal("toggle");
+        //     isValid = false;
+        // }
 
-        return isValid;
+    return isValid;
     };
 
     if (validate()) {
@@ -91,7 +92,7 @@ submitButton.onclick = () => {
             .then(function (response) {
 
                 // have to do something with this to find a match
-
+                //go through your array of responses and filter results that have a score within the same range as the user
                 // const match = response.data[];
 
                 console.log(response.data[0]);
