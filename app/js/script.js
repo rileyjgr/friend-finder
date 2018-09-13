@@ -76,6 +76,7 @@ submitButton.onclick = () => {
 
         axios.post(Url, Data, {})
             .then(function (response) {
+
                 console.log(response);
 
             })
@@ -100,10 +101,14 @@ submitButton.onclick = () => {
 
                 // this will always return the same user. I need to iterate through the json file and find someone similar.
                 // or is this better done on the express server.
-                console.log(response.data[match]);
+                // console.log(response.data[match]);
 
                 // this will be undefined so they wont return anything
-                $("#match-name").text(response.data.name);
+
+
+
+                $("#match-name").text(response.data[0].name);
+                console.log(response.data[0].name);
                 $("#match-img").attr("src", response.data.photo);
 
                 // Show the modal with the best match
