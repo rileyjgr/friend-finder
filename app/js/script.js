@@ -78,41 +78,13 @@ submitButton.onclick = () => {
             .then(function (response) {
 
                 console.log(response);
-
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
-        axios.get(Url, {
-            data: {
-                name: name,
-                photo: photo
-            }
-        })
-            .then(function (response) {
-
-                // have to do something with this to find a match
-                //go through your array of responses and filter results that have a score within the same range as the user
-                // const match = response.data[];
-
-                // I have no idea what I set this equal to
-                const match = '';
-
-                // this will always return the same user. I need to iterate through the json file and find someone similar.
-                // or is this better done on the express server.
-                // console.log(response.data[match]);
-
-                // this will be undefined so they wont return anything
-
-
-
                 $("#match-name").text(response.data.name);
                 console.log(response.data.name);
                 $("#match-img").attr("src", response.data.photo);
 
                 // Show the modal with the best match
                 $("#results-modal").modal("toggle");
+
             })
             .catch(function (error) {
                 console.log(error);
