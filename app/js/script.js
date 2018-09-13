@@ -107,8 +107,8 @@ submitButton.onclick = () => {
 
 
 
-                $("#match-name").text(response.data[0].name);
-                console.log(response.data[0].name);
+                $("#match-name").text(response.data.name);
+                console.log(response.data.name);
                 $("#match-img").attr("src", response.data.photo);
 
                 // Show the modal with the best match
